@@ -7,15 +7,29 @@ function Book(title, author, pages, read){
     this.read = read;
 };
 
-function addBookToLibrary(ubook){
-    mylibrary.push(ubook);
+function addBookToLibrary(book){
+    mylibrary.push(book);
 };
 
 function displayLibrary(){
     let i = 0;
 
+    let table = document.getElementById("myTable");
+
     while(i < mylibrary.length){
-        console.log(mylibrary[i]);
+
+        let newRow = table.insertRow(-1);
+
+        let titleCell = newRow.insertCell(0);      
+        let authorCell = newRow.insertCell(1);
+        let pagesCell = newRow.insertCell(2);
+        let readCell = newRow.insertCell(3);
+
+        titleCell = titleCell.innerHTML = mylibrary[i].title;      
+        authorCell = authorCell.innerHTML = mylibrary[i].author;      
+        pagesCell = pagesCell.innerHTML = mylibrary[i].pages;
+        readCell = readCell.innerHTML = mylibrary[i].read;
+
         i++;
     };
 };
@@ -29,4 +43,6 @@ addBookToLibrary(book1);
 addBookToLibrary(book2);
 addBookToLibrary(book3);
 
+
+displayLibrary();
 

@@ -25,10 +25,26 @@ function displayLibrary(){
         let pagesCell = newRow.insertCell(2);
         let readCell = newRow.insertCell(3);
 
-        titleCell = titleCell.innerHTML = mylibrary[i].title;      
-        authorCell = authorCell.innerHTML = mylibrary[i].author;      
-        pagesCell = pagesCell.innerHTML = mylibrary[i].pages;
-        readCell = readCell.innerHTML = mylibrary[i].read;
+        titleCell.innerHTML = mylibrary[i].title;      
+        authorCell.innerHTML = mylibrary[i].author;      
+        pagesCell.innerHTML = mylibrary[i].pages;
+        readCell.innerHTML = mylibrary[i].read;
+        
+        let removeCell = newRow.insertCell(4);
+        let removeButton = document.createElement("button");
+
+        removeButton.textContent = "Remove"; 
+        removeButton.id = i;
+
+        removeButton.addEventListener("click", function(){
+            mylibrary.splice(this.id,1);
+            console.log(this.id);
+            console.log(mylibrary);
+            clearLibraryDisplay();
+            displayLibrary();
+        });
+
+        removeCell.appendChild(removeButton);
 
         i++;
     };
@@ -38,7 +54,9 @@ function clearLibraryDisplay(){
     let table = document.getElementById("myTable");
 
     let i = mylibrary.length;
-    while(i > 1){
+
+
+    while(i+1 > 0){
         table.deleteRow(-1);
         i--;
     }
